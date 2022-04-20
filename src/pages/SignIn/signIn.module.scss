@@ -1,0 +1,35 @@
+.wrapper {
+    display: flex;
+    height: 100vh;
+}
+.blueSide {
+    position: relative;
+    background-color: #71c9f8;
+    flex-basis: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    &ListInfo{
+        position: relative;
+        list-style-type: none;
+        padding: 0;
+        margin: 0;
+        h6 {
+            display: flex;
+            align-items: center;
+            color: #fff;
+            font-weight: 700;
+            font-size: 20px;  
+        }
+    }
+    &ListInfoItem {
+        margin-bottom: 40px;
+    }
+}
+.loginSide {
+    display: flex;
+    flex-basis: 50%;
+    align-items: center;
+    justify-content: center;
+}
