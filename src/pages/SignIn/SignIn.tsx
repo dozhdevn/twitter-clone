@@ -19,17 +19,21 @@ const BigIcon = styled(TwitterIcon)({
     left: '50%',
     top: '53%',
     transform: 'translate(-50%, -50%)',
-    width: '350%',
-    height: '350%',
+    width: '200%',
+    height: '200%',
 })
 
 
-const SignIn: FC = () => {
+export const SignIn: FC = () => {
 
-    const [visibleModal, setVisibleModal] = useState<'signIn'>()
+    const [visibleModal, setVisibleModal] = useState<'signIn' | 'signUp'>()
 
     const handleClickOpenSignIn = (): void => {
         setVisibleModal('signIn')
+    }
+
+    const handleClickOpenSignUp = (): void => {
+        setVisibleModal('signUp')
     }
 
     const handleCloseModal = (): void => {
@@ -65,10 +69,11 @@ const SignIn: FC = () => {
                     <TwitterIcon sx={{fontSize: 50}} color='primary'/>
                     <LoginSideTitle variant="h4">Узнайте, что происходит в мире прямо сейчас</LoginSideTitle>
                     <Typography sx={{mb: '20px'}}><b>Присоединяйтесь к Твиттеру прямо сейчас!</b></Typography>
-                    <Button sx={{mb: '20px'}} variant='contained' fullWidth >Зарегистрироваться</Button>
+                    <Button onClick = {handleClickOpenSignUp} sx={{mb: '20px'}} variant='contained' fullWidth >Зарегистрироваться</Button>
                     <Button onClick ={handleClickOpenSignIn} variant='outlined' fullWidth >Войти</Button>
                 </div>
             </div>
+    
             <ModalBlock
                 visible={visibleModal === 'signIn'}
                 onClose={handleCloseModal} 
@@ -95,7 +100,50 @@ const SignIn: FC = () => {
                             fullWidth
                             InputLabelProps={{shrink: true}}/>
                         <Button
-                            variant='outlined'
+                            variant='contained'
+                            color='primary'
+                            fullWidth>
+                                Войти
+                        </Button>
+                    </FormGroup>
+                </FormControl>
+            </ModalBlock>
+
+            <ModalBlock
+                visible={visibleModal === 'signUp'}
+                onClose={handleCloseModal} 
+                title = 'Создайте учетную запись'>
+                <FormControl
+                    component='fieldset'
+                    sx={{marginBottom: '16px'}}
+                    fullWidth>
+                    <FormGroup>
+                        <TextField
+                            sx={{mb: '18px'}}
+                            label='Имя'
+                            type='name'
+                            autoFocus
+                            variant='filled'
+                            fullWidth
+                            InputLabelProps={{shrink: true}}/>
+                        <TextField
+                            sx={{mb: '18px'}}
+                            label='E-mail'
+                            type='email'
+                            autoFocus
+                            variant='filled'
+                            fullWidth
+                            InputLabelProps={{shrink: true}}/>
+                        <TextField
+                            sx={{mb: '18px'}}
+                            label='Пароль'
+                            type='password'
+                            autoFocus
+                            variant='filled'
+                            fullWidth
+                            InputLabelProps={{shrink: true}}/>
+                        <Button
+                            variant='contained'
                             color='primary'
                             fullWidth>
                                 Войти
@@ -105,6 +153,4 @@ const SignIn: FC = () => {
             </ModalBlock>
         </div>
     )
-    }
-
-export default SignIn
+}
