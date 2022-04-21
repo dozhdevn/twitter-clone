@@ -1,4 +1,4 @@
-import { FC } from 'react'
+import { FC, useState } from 'react'
 import { Button, IconButton, Typography } from '@mui/material';
 import { styled } from '@mui/system'
 import TwitterIcon from '@mui/icons-material/Twitter';
@@ -8,14 +8,19 @@ import MessageIcon from '@mui/icons-material/Email';
 import BookmarkIcon from '@mui/icons-material/Bookmark';
 import ListAltIcon from '@mui/icons-material/ListAlt';
 import PersonIcon from '@mui/icons-material/Person';
+import CreateIcon from '@mui/icons-material/Create';
+import ModalBlock from './ModalBlock';
+import { AddTweetForm } from './AddTweetForm/AddTweetForm';
 
 export const SideMenu: FC = () => {
 
     const SideMenuList = styled('ul')({
+        position: 'sticky',
+        top: 0,
         padding: 0,
         margin: 0,
         listStyle: 'none',
-        width: 230
+        maxWidth: 230
     })
 
     const SideMenuListItem = styled('li')(({ theme }) => ({
@@ -49,9 +54,17 @@ export const SideMenu: FC = () => {
         marginTop: theme.spacing(2),
     }));
 
-    
+    const typographyStyle = {fontSize: 20, fontWeight: 700, marginLeft: "15px", display: {xs: 'none', sm: 'none', md: 'block'}}
 
-    const typographyStyle = {fontSize: 20, fontWeight: 700, marginLeft: "15px"}
+    const [visibleAddTweet, setVisibleAddTweet] = useState<boolean>(false)
+
+    const handleClickOpenAddTweet = (): void => {
+        setVisibleAddTweet(true)
+    }
+
+    const handleClickCloseAddTweet = (): void => {
+        setVisibleAddTweet(false)
+    }
 
     return (
         <SideMenuList>
@@ -107,11 +120,21 @@ export const SideMenu: FC = () => {
             </SideMenuListItem>
 
             <SideMenuListItem>
-                <SideMenuTweetButton
+                <SideMenuTweetButton onClick={handleClickOpenAddTweet} 
+                sx={{ display: { xs: 'none', sm: 'none', md: 'inline-flex' } }}
                 fullWidth 
                 variant='contained'>
                     Твитнуть
                 </SideMenuTweetButton>
+
+                <SideMenuTweetButton onClick={handleClickOpenAddTweet}
+                sx={{ display: { xs: 'inline-flex', sm: 'inline-flex', md: 'none' } }}
+                variant='contained'>
+                    <CreateIcon/>
+                </SideMenuTweetButton>
+                <ModalBlock visible={visibleAddTweet} onClose={handleClickCloseAddTweet}>
+                    <AddTweetForm maxRows={15}/>
+                </ModalBlock>
             </SideMenuListItem>
         </SideMenuList>
     )

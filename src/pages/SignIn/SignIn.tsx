@@ -4,7 +4,7 @@ import TwitterIcon from '@mui/icons-material/Twitter';
 import SearchIcon from '@mui/icons-material/Search';
 import PeopleIcon from '@mui/icons-material/PeopleOutline';
 import ChatIcon from '@mui/icons-material/ChatBubbleOutlineOutlined';
-import ModalBlock from '../../components/ModalBlock/ModalBlock';
+import ModalBlock from '../../components/ModalBlock';
 import { FC, useState } from 'react';
 
 const LoginSideTitle = styled(Typography)({
