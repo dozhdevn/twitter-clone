@@ -6,6 +6,7 @@ import RepostIcon from '@mui/icons-material/Repeat';
 import LikeIcon from '@mui/icons-material/FavoriteBorder';
 import ReplyIcon from '@mui/icons-material/Reply';
 import { grey } from '@mui/material/colors';
+import { Link } from 'react-router-dom';
 
 interface UserI {
     fullname: string,
@@ -15,20 +16,24 @@ interface UserI {
 
 interface TweetProps {
     text: string,
+    _id: string,
     user: UserI
 }
 
-export const Tweet: FC<TweetProps> = ({ text, user }) => {
+export const Tweet: FC<TweetProps> = ({ text, user, _id }):React.ReactElement => {
 
-    const TweetWrapper = styled(Paper)({
+    const TweetWrapper = styled(Link)({
         display: 'flex',
         borderTop: '0',
         borderLeft: '0',
+        borderBottom: `1px solid ${grey[300]}`,
         borderRight: '0',
         borderRadius: 0,
         cursor: 'pointer',
         paddingTop: '15px',
         paddingLeft: '20px',
+        color: 'inherit',
+        textDecoration: 'none',
         '&:hover': {
             backgroundColor: 'rgb(245, 248, 250)',
         }
@@ -53,7 +58,7 @@ export const Tweet: FC<TweetProps> = ({ text, user }) => {
     })
 
     return (
-        <TweetWrapper variant="outlined">
+        <TweetWrapper to = {`/home/tweet/${_id}`}>
             <TweetAvatar
                 alt="Avatar"
                 src={user.avatarUrl} />

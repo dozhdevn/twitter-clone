@@ -1,25 +1,25 @@
-import { TweetsActions, TweetsActionsTypes, TweetsState } from "./types"
+import { TagsActions, TagsActionsTypes, TagsState } from "./types"
 
-const initialState: TweetsState = {
-    tweets: [],
+const initialState: TagsState = {
+    tags: [],
     loading: false,
     error: null
 }
 
-export const tweetsReducer = (state = initialState, action: TweetsActions): TweetsState => {
+export const tagsReducer = (state = initialState, action: TagsActions): TagsState => {
     switch (action.type) {
-        case TweetsActionsTypes.FETCH_TWEETS:
+        case TagsActionsTypes.FETCH_TAGS:
             return {
                 ...state,
                 loading: true
             }
-        case TweetsActionsTypes.FETCH_TWEETS_SUCCESS:
+        case TagsActionsTypes.FETCH_TAGS_SUCCESS:
             return {
                 ...state,
-                tweets: action.payload,
+                tags: action.payload,
                 loading: false
             }
-        case TweetsActionsTypes.FETCH_TWEETS_ERROR:
+        case TagsActionsTypes.FETCH_TAGS_ERROR:
             return {
                 ...state,
                 loading: false,

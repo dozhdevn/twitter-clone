@@ -9,7 +9,7 @@ interface ModalBlockProps {
 	onClose: () => void
 }
 
-const ModalBlock: FC<ModalBlockProps> = ({ children, title, visible = false, onClose }) => {
+const ModalBlock: FC<ModalBlockProps> = ({ children, title, visible = false, onClose }) :React.ReactElement | null => {
 	return (
 		visible ?
 			<Dialog open={visible} aria-labelledby="form-dialog-title" onClose={onClose}>

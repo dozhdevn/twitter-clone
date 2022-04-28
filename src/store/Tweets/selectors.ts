@@ -1,8 +1,4 @@
-import { ITweet, TweetsState } from "./types";
-
-interface RootState {
-    tweets: TweetsState;
-  }
+import { RootState } from "../store";
   
 
 export const selectTweets = (state: RootState ) => state.tweets

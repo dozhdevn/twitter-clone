@@ -9,9 +9,7 @@ function App() {
         <Route path='/signIn'>
           <SignIn/>
         </Route>
-        <Route path='/'>
-          <Home/>
-        </Route>
+        <Route path='/'component={Home}/>
       </Switch>
     </div>
   );

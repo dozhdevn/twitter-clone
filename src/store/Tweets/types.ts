@@ -1,3 +1,5 @@
+import { Action } from "redux";
+
 interface IUser {
     avatarUrl: string,
     fullname: string,
@@ -16,22 +18,22 @@ export interface TweetsState {
     error: null | string
 }
 
-export enum TweetsActionTypes {
+export enum TweetsActionsTypes {
     FETCH_TWEETS = 'FETCH_TWEETS',
     FETCH_TWEETS_SUCCESS = 'FETCH_TWEETS_SUCCESS',
     FETCH_TWEETS_ERROR = 'FETCH_TWEETS_ERROR'
 }
 
-interface FetchTweetsAction {
-    type: TweetsActionTypes.FETCH_TWEETS,
+interface FetchTweetsAction extends Action<TweetsActionsTypes> {
+    type: TweetsActionsTypes.FETCH_TWEETS,
 }
 
-interface FetchTweetsSuccessAction {
-    type: TweetsActionTypes.FETCH_TWEETS_SUCCESS;
+interface FetchTweetsSuccessAction extends Action<TweetsActionsTypes> {
+    type: TweetsActionsTypes.FETCH_TWEETS_SUCCESS;
     payload: ITweet[]
 }
-interface FetchTweetsErrorAction {
-    type: TweetsActionTypes.FETCH_TWEETS_ERROR;
+interface FetchTweetsErrorAction extends Action<TweetsActionsTypes>{
+    type: TweetsActionsTypes.FETCH_TWEETS_ERROR;
     payload: string;
 }
 

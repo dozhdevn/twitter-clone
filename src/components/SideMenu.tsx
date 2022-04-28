@@ -12,7 +12,7 @@ import CreateIcon from '@mui/icons-material/Create';
 import ModalBlock from './ModalBlock';
 import { AddTweetForm } from './AddTweetForm/AddTweetForm';
 
-export const SideMenu: FC = () => {
+export const SideMenu: FC = ():React.ReactElement => {
 
     const SideMenuList = styled('ul')({
         position: 'sticky',
