@@ -6,7 +6,6 @@ import { useParams } from 'react-router-dom'
 import { Tweet } from '../../../components/Tweet'
 import { setTweet } from '../../../store/Tweet/actionCreators'
 import { selectTweet } from '../../../store/Tweet/selectors'
-import { TweetsWrapper } from '../styledComponents'
 
 
 export const FullTweet: FC = () => {
@@ -19,6 +18,10 @@ export const FullTweet: FC = () => {
   useEffect(() => {
     if (id) {
       dispatch(setTweet(id))
+    }
+
+    return () => {
+      dispatch(setTweet(undefined))
     }
   }, [dispatch, id])
 

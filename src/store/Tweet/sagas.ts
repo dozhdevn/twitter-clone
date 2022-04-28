@@ -1,4 +1,4 @@
-import { call, put, takeEvery, takeLatest } from 'redux-saga/effects'
+import { call, put, takeLatest } from 'redux-saga/effects'
 import { fetchTweetData } from "../../api/tweetApi";
 import { ITweet } from '../Tweets/types';
 import { FetchTweetAction } from './types';

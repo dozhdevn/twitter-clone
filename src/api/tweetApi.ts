@@ -10,3 +10,7 @@ export const fetchTweetData = async (id: string):Promise<ITweet[]> => {
     const {data} = await axios.get(`/tweets?_id=${id}`)
     return await data
 }
+export const fetchAddTweet = async (payload: ITweet): Promise<ITweet> => {
+    const {data} = await axios.post('/tweets', payload)
+    return await data
+}

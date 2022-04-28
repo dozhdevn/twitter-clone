@@ -11,6 +11,7 @@ import PersonIcon from '@mui/icons-material/Person';
 import CreateIcon from '@mui/icons-material/Create';
 import ModalBlock from './ModalBlock';
 import { AddTweetForm } from './AddTweetForm/AddTweetForm';
+import { Link } from 'react-router-dom';
 
 export const SideMenu: FC = ():React.ReactElement => {
 
@@ -70,11 +71,11 @@ export const SideMenu: FC = ():React.ReactElement => {
         <SideMenuList>
 
             <SideMenuListItem>
-                <div>
+                <Link to='/home'>
                     <IconButton sx={{margin: '10px 0'}} color='primary'>
                         <TwitterIcon sx={{fontSize: 36}} />
                     </IconButton>
-                </div>
+                </Link>
             </SideMenuListItem>
 
             <SideMenuListItem>

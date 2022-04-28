@@ -3,6 +3,8 @@ import { FC, useState } from 'react'
 import OutlinedIcon from '@mui/icons-material/ImageOutlined';
 import EmojiIcon from '@mui/icons-material/EmojiEmotionsOutlined';
 import { AddFormBody, AddFormBottomActions, AddFormBottomRight, AddFormTextarea, TweetAvatar, AddFormBottom } from './styledComponentTweetForm';
+import { useDispatch } from 'react-redux';
+import { fetchAddTweet } from '../../store/Tweets/actionCreators';
 
 interface AddTweetFormProps {
     maxRows?: number
@@ -13,6 +15,7 @@ export const AddTweetForm: FC<AddTweetFormProps> = ({maxRows}) => {
     const MAX_LENGTH = 280
 
     const [text, setText] = useState<string>('')
+    const dispatch = useDispatch()
     const textLimitPercent = Math.round(text.length / 2.8)
     const textCount = MAX_LENGTH - text.length
 
@@ -23,6 +26,7 @@ export const AddTweetForm: FC<AddTweetFormProps> = ({maxRows}) => {
     }
 
     const handleClickAddTweet = (): void => {
+        dispatch(fetchAddTweet(text))
         setText('')
     }
 

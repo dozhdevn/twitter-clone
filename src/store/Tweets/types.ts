@@ -21,11 +21,13 @@ export interface TweetsState {
 export enum TweetsActionsTypes {
     FETCH_TWEETS = 'FETCH_TWEETS',
     FETCH_TWEETS_SUCCESS = 'FETCH_TWEETS_SUCCESS',
-    FETCH_TWEETS_ERROR = 'FETCH_TWEETS_ERROR'
+    FETCH_TWEETS_ERROR = 'FETCH_TWEETS_ERROR',
+    FETCH_ADD_TWEET = 'FETCH_ADD_TWEET',
+    ADD_TWEET = 'ADD_TWEET'
 }
 
 interface FetchTweetsAction extends Action<TweetsActionsTypes> {
-    type: TweetsActionsTypes.FETCH_TWEETS,
+    type: TweetsActionsTypes.FETCH_TWEETS
 }
 
 interface FetchTweetsSuccessAction extends Action<TweetsActionsTypes> {
@@ -36,5 +38,14 @@ interface FetchTweetsErrorAction extends Action<TweetsActionsTypes>{
     type: TweetsActionsTypes.FETCH_TWEETS_ERROR;
     payload: string;
 }
+export interface AddTweetAction extends Action<TweetsActionsTypes> {
+    type: TweetsActionsTypes.ADD_TWEET;
+    payload: ITweet
+}
 
-export type TweetsActions = FetchTweetsAction | FetchTweetsSuccessAction | FetchTweetsErrorAction
+export interface FetchAddTweet extends Action<TweetsActionsTypes> {
+    type: TweetsActionsTypes.FETCH_ADD_TWEET;
+    payload: string
+}
+
+export type TweetsActions = FetchTweetsAction | FetchTweetsSuccessAction | FetchTweetsErrorAction | AddTweetAction

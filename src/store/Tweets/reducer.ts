@@ -25,6 +25,11 @@ export const tweetsReducer = (state = initialState, action: TweetsActions): Twee
                 loading: false,
                 error: action.payload
             }
+        case TweetsActionsTypes.ADD_TWEET:
+            return {
+                ...state,
+                tweets: [...state.tweets, action.payload]
+            }
         default:
             return state
     }
