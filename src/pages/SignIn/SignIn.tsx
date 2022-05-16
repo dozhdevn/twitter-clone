@@ -6,6 +6,7 @@ import PeopleIcon from '@mui/icons-material/PeopleOutline';
 import ChatIcon from '@mui/icons-material/ChatBubbleOutlineOutlined';
 import ModalBlock from '../../components/ModalBlock';
 import { FC, useState } from 'react';
+import { LoginModal } from './components/LoginModal';
 
 const LoginSideTitle = styled(Typography)({
     fontSize: '32px',
@@ -20,7 +21,7 @@ const BigIcon = styled(TwitterIcon)({
     top: '53%',
     transform: 'translate(-50%, -50%)',
     width: '200%',
-    height: '200%',
+    height: '200%'
 })
 
 
@@ -74,40 +75,7 @@ export const SignIn: FC = () => {
                 </div>
             </div>
     
-            <ModalBlock
-                visible={visibleModal === 'signIn'}
-                onClose={handleCloseModal} 
-                title = 'Войти в аккаунт'>
-                <FormControl
-                    component='fieldset'
-                    sx={{marginBottom: '16px'}}
-                    fullWidth>
-                    <FormGroup>
-                        <TextField
-                            sx={{mb: '18px'}}
-                            label='E-mail'
-                            type='email'
-                            autoFocus
-                            variant='filled'
-                            fullWidth
-                            InputLabelProps={{shrink: true}}/>
-                        <TextField
-                            sx={{mb: '18px'}}
-                            label='Пароль'
-                            type='password'
-                            autoFocus
-                            variant='filled'
-                            fullWidth
-                            InputLabelProps={{shrink: true}}/>
-                        <Button
-                            variant='contained'
-                            color='primary'
-                            fullWidth>
-                                Войти
-                        </Button>
-                    </FormGroup>
-                </FormControl>
-            </ModalBlock>
+            <LoginModal open={visibleModal === 'signIn'} onClose={handleCloseModal}/>
 
             <ModalBlock
                 visible={visibleModal === 'signUp'}

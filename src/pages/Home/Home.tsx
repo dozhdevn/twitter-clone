@@ -1,5 +1,5 @@
 import { CircularProgress, Container, Grid, InputAdornment, Paper, Typography } from '@mui/material'
-import { FC, useEffect } from 'react'
+import { FC, useEffect} from 'react'
 import { SearchTextField } from '../../components/SearchTextField';
 import { SideMenu } from '../../components/SideMenu'
 import { Tweet } from '../../components/Tweet';
@@ -17,9 +17,11 @@ import { FullTweet } from './components/FullTweet';
 import { BackButton } from '../../components/BackButton';
 
 
+
 const Home: FC = (): React.ReactElement => {
 
     const { tweets, loading } = useSelector(selectTweets)
+    
     const dispatch = useDispatch()
 
     useEffect(() => {

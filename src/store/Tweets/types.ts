@@ -6,16 +6,19 @@ interface IUser {
     username: string
 }
 
-export interface ITweet {
+export interface Tweet {
     _id: string,
     text: string,
-    user: IUser
+    user: IUser,
+    createdAt: string
 }
 
 export interface TweetsState {
-    tweets: ITweet[],
+    tweets: Tweet[],
     loading: boolean,
-    error: null | string
+    loadingAddTweet: boolean,
+    error: null | string,
+    errorAddTweet: null | string
 }
 
 export enum TweetsActionsTypes {
@@ -23,7 +26,8 @@ export enum TweetsActionsTypes {
     FETCH_TWEETS_SUCCESS = 'FETCH_TWEETS_SUCCESS',
     FETCH_TWEETS_ERROR = 'FETCH_TWEETS_ERROR',
     FETCH_ADD_TWEET = 'FETCH_ADD_TWEET',
-    ADD_TWEET = 'ADD_TWEET'
+    ADD_TWEET = 'ADD_TWEET',
+    ADD_TWEET_ERROR = 'ADD_TWEET_ERROR'
 }
 
 interface FetchTweetsAction extends Action<TweetsActionsTypes> {
@@ -32,15 +36,16 @@ interface FetchTweetsAction extends Action<TweetsActionsTypes> {
 
 interface FetchTweetsSuccessAction extends Action<TweetsActionsTypes> {
     type: TweetsActionsTypes.FETCH_TWEETS_SUCCESS;
-    payload: ITweet[]
+    payload: Tweet[]
 }
 interface FetchTweetsErrorAction extends Action<TweetsActionsTypes>{
     type: TweetsActionsTypes.FETCH_TWEETS_ERROR;
     payload: string;
 }
+
 export interface AddTweetAction extends Action<TweetsActionsTypes> {
     type: TweetsActionsTypes.ADD_TWEET;
-    payload: ITweet
+    payload: Tweet
 }
 
 export interface FetchAddTweet extends Action<TweetsActionsTypes> {
@@ -48,4 +53,9 @@ export interface FetchAddTweet extends Action<TweetsActionsTypes> {
     payload: string
 }
 
-export type TweetsActions = FetchTweetsAction | FetchTweetsSuccessAction | FetchTweetsErrorAction | AddTweetAction
+interface AddTweetError extends Action<TweetsActionsTypes> {
+    type: TweetsActionsTypes.ADD_TWEET_ERROR;
+    payload: string
+}
+
+export type TweetsActions = FetchTweetsAction | FetchTweetsSuccessAction | FetchTweetsErrorAction | AddTweetAction | FetchAddTweet | AddTweetError

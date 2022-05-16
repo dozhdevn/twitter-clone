@@ -1,8 +1,8 @@
 import { Action } from "redux";
-import { ITweet } from "../Tweets/types";
+import { Tweet } from "../Tweets/types";
 
 export interface TweetState {
-    tweet?: ITweet
+    tweet?: Tweet
     loading: boolean,
     error: null | string
 }
@@ -20,7 +20,7 @@ export interface FetchTweetAction extends Action<TweetActionsTypes> {
 
 interface FetchTweetSuccessAction extends Action<TweetActionsTypes> {
     type: TweetActionsTypes.FETCH_TWEET_SUCCESS;
-    payload: ITweet
+    payload: Tweet
 }
 interface FetchTweetErrorAction extends Action<TweetActionsTypes>{
     type: TweetActionsTypes.FETCH_TWEET_ERROR;

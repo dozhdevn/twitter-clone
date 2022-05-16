@@ -1,12 +1,17 @@
-import { Avatar, IconButton, Paper, Typography } from '@mui/material'
+import { Avatar, IconButton, Typography } from '@mui/material'
 import { styled } from '@mui/system'
 import { FC } from 'react'
+
 import CommentIcon from '@mui/icons-material/Comment';
 import RepostIcon from '@mui/icons-material/Repeat';
 import LikeIcon from '@mui/icons-material/FavoriteBorder';
 import ReplyIcon from '@mui/icons-material/Reply';
+
 import { grey } from '@mui/material/colors';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
+import { formateDate } from '../utils/formatDate';
+
+import LongMenu from './LongMenu';
 
 interface UserI {
     fullname: string,
@@ -17,13 +22,15 @@ interface UserI {
 interface TweetProps {
     text: string,
     _id: string,
+    createdAt: string,
     user: UserI
 }
 
-export const Tweet: FC<TweetProps> = ({ text, user, _id }):React.ReactElement => {
+export const Tweet: FC<TweetProps> = ({ text, user, _id, createdAt }): React.ReactElement => {
 
-    const TweetWrapper = styled(Link)({
+    const TweetWrapper = styled('a')({
         display: 'flex',
+        alignItems: 'flex-start',
         borderTop: '0',
         borderLeft: '0',
         borderBottom: `1px solid ${grey[300]}`,
@@ -47,6 +54,15 @@ export const Tweet: FC<TweetProps> = ({ text, user, _id }):React.ReactElement =>
         maxWidth: 450
     })
 
+    const TweetHeader = styled(Typography)({
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'space-between',
+        "b": {
+            marginRight: '8px'
+        }
+    })
+
     const TweetAvatar = styled(Avatar)(({ theme }) => ({
         width: theme.spacing(5),
         height: theme.spacing(5),
@@ -57,19 +73,32 @@ export const Tweet: FC<TweetProps> = ({ text, user, _id }):React.ReactElement =>
         color: grey[500]
     })
 
+    const history = useHistory();
+
+    const handleClickTweet = (event: React.MouseEvent<HTMLAnchorElement>): void => {
+        event.preventDefault();
+        history.push(`/home/tweet/${_id}`);
+    };
+
+
     return (
-        <TweetWrapper to = {`/home/tweet/${_id}`}>
+        <TweetWrapper onClick={handleClickTweet} href={`/home/tweet/${_id}`}>
             <TweetAvatar
                 alt="Avatar"
                 src={user.avatarUrl} />
 
-            <div>
-                <Typography>
-                    <b>{user.fullname}</b>
-                    <TweetUserName>@{user.username}</TweetUserName>
-                    <TweetUserName>·</TweetUserName>
-                    <TweetUserName>1 ч</TweetUserName>
-                </Typography>
+            <div style={{ flex: 1 }}>
+                <TweetHeader>
+                    <div>
+                        <b>{user.fullname}</b>
+                        <TweetUserName>@{user.username}</TweetUserName>
+                        <TweetUserName>·</TweetUserName>
+                        <TweetUserName>{formateDate(createdAt)}</TweetUserName>
+                    </div>
+                    
+                   <LongMenu/>
+
+                </TweetHeader>
 
                 <Typography variant='body1' gutterBottom>
                     {text}

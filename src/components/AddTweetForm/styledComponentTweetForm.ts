@@ -32,6 +32,7 @@ export const AddFormBottomActions= styled('div')({
 })
 
 export const AddFormBottomRight= styled('div')({
+    position: 'relative',
     display: 'flex',
     alignItems: 'center'
 })

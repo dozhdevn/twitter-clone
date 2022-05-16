@@ -42,14 +42,14 @@ export const theme = createTheme({
               height: 40,
               fontWeight: 700,
             },
-          },
-          textPrimary: {
-            paddingLeft: 20,
-            paddingRight: 20,
-          },
-          outlinedPrimary: {
-            borderColor: 'rgb(29, 161, 243)',
-          },
+            textPrimary: {
+              paddingLeft: 20,
+              paddingRight: 20,
+            },
+            outlinedPrimary: {
+              borderColor: 'rgb(29, 161, 243)',
+            }
+          }
         },
         MuiDialog: {
           styleOverrides:{

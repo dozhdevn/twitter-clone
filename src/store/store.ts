@@ -5,6 +5,7 @@ import { rootSaga } from "./saga";
 import { TagsState } from "./Tags/types";
 import { TweetState } from "./Tweet/types";
 import { TweetsState } from "./Tweets/types";
+import { UserState } from "./User/types";
 
 
 declare global {
@@ -21,7 +22,8 @@ const sagaMiddleWare = createSagaMiddleware()
 export interface RootState {
   tweets: TweetsState
   tags: TagsState
-  tweet: TweetState
+  tweet: TweetState,
+  user: UserState
 }
 
 export const store = createStore(rootReducer, composeEnhancers(applyMiddleware(sagaMiddleWare)))

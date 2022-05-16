@@ -1,15 +1,15 @@
 import { call, put, takeLatest } from 'redux-saga/effects'
 import { fetchTweetData } from "../../api/tweetApi";
-import { ITweet } from '../Tweets/types';
+import { Tweet } from '../Tweets/types';
 import { FetchTweetAction } from './types';
 import { setTweetError, setTweetSuccess } from './actionCreators';
 import { TweetActionsTypes } from './types';
 
 
-export function* fetchTweetDataRequest({payload}: FetchTweetAction): Generator<unknown, void, ITweet[]>{
+export function* fetchTweetDataRequest({payload: tweetId}: FetchTweetAction): Generator<unknown, void, Tweet>{
     try {
-        const data: ITweet[] = yield call(fetchTweetData, payload)
-        yield put(setTweetSuccess(data[0]))
+        const data: Tweet = yield call(fetchTweetData, tweetId)
+        yield put(setTweetSuccess(data))
     } catch (error) {
         yield put(setTweetError('Ошибка при запросе твита'))
     }
