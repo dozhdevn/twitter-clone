@@ -31,7 +31,7 @@ export const theme = createTheme({
           default: '#fff',
         },
       },
-      shadows: [],
+      shadows: Array(25).fill('none'),
       components: {
         MuiButton: {
           styleOverrides: {

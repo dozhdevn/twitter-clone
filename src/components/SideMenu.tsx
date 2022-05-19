@@ -10,10 +10,11 @@ import ListAltIcon from '@mui/icons-material/ListAlt';
 import PersonIcon from '@mui/icons-material/Person';
 import CreateIcon from '@mui/icons-material/Create';
 import ModalBlock from './ModalBlock';
+import { UserSideProfile } from './UserSideProfile'
 import { AddTweetForm } from './AddTweetForm/AddTweetForm';
 import { Link } from 'react-router-dom';
 
-export const SideMenu: FC = ():React.ReactElement => {
+export const SideMenu: FC = (): React.ReactElement => {
 
     const SideMenuList = styled('ul')({
         position: 'sticky',
@@ -47,7 +48,7 @@ export const SideMenu: FC = ():React.ReactElement => {
             marginBottom: 15,
             transition: 'background-color 0.1s ease-in-out',
         },
-        
+
     }));
 
     const SideMenuTweetButton = styled(Button)(({ theme }) => ({
@@ -55,7 +56,7 @@ export const SideMenu: FC = ():React.ReactElement => {
         marginTop: theme.spacing(2),
     }));
 
-    const typographyStyle = {fontSize: 20, fontWeight: 700, marginLeft: "15px", display: {xs: 'none', sm: 'none', md: 'block'}}
+    const typographyStyle = { fontSize: 20, fontWeight: 700, marginLeft: "15px", display: { xs: 'none', sm: 'none', md: 'block' } }
 
     const [visibleAddTweet, setVisibleAddTweet] = useState<boolean>(false)
 
@@ -68,76 +69,80 @@ export const SideMenu: FC = ():React.ReactElement => {
     }
 
     return (
-        <SideMenuList>
+        <>
+            <SideMenuList>
 
-            <SideMenuListItem>
-                <Link to='/home'>
-                    <IconButton sx={{margin: '10px 0'}} color='primary'>
-                        <TwitterIcon sx={{fontSize: 36}} />
-                    </IconButton>
-                </Link>
-            </SideMenuListItem>
+                <SideMenuListItem>
+                    <Link to='/home'>
+                        <IconButton sx={{ margin: '10px 0' }} color='primary'>
+                            <TwitterIcon sx={{ fontSize: 36 }} />
+                        </IconButton>
+                    </Link>
+                </SideMenuListItem>
 
-            <SideMenuListItem>
-                <div>
-                    <SearchIcon sx={{fontSize: 32}}/>
-                    <Typography sx={typographyStyle} variant='h6'>Поиск</Typography>
-                </div>
-            </SideMenuListItem>
+                <SideMenuListItem>
+                    <div>
+                        <SearchIcon sx={{ fontSize: 32 }} />
+                        <Typography sx={typographyStyle} variant='h6'>Поиск</Typography>
+                    </div>
+                </SideMenuListItem>
 
-            <SideMenuListItem>
-                <div>
-                    <NotificationsIcon sx={{fontSize: 32}} />
-                    <Typography sx={typographyStyle} variant='h6'>Уведомления</Typography>
-                </div>
-            </SideMenuListItem>
+                <SideMenuListItem>
+                    <div>
+                        <NotificationsIcon sx={{ fontSize: 32 }} />
+                        <Typography sx={typographyStyle} variant='h6'>Уведомления</Typography>
+                    </div>
+                </SideMenuListItem>
 
-            <SideMenuListItem>
-                <div>
-                    <MessageIcon sx={{fontSize: 32}}/>
-                    <Typography sx={typographyStyle} variant='h6'>Сообщения</Typography>
-                </div>
-            </SideMenuListItem>
+                <SideMenuListItem>
+                    <div>
+                        <MessageIcon sx={{ fontSize: 32 }} />
+                        <Typography sx={typographyStyle} variant='h6'>Сообщения</Typography>
+                    </div>
+                </SideMenuListItem>
 
-            <SideMenuListItem>
-                <div>
-                    <BookmarkIcon sx={{fontSize: 32}}/>
-                    <Typography sx={typographyStyle} variant='h6'>Закладки</Typography>
-                </div>
-            </SideMenuListItem>
+                <SideMenuListItem>
+                    <div>
+                        <BookmarkIcon sx={{ fontSize: 32 }} />
+                        <Typography sx={typographyStyle} variant='h6'>Закладки</Typography>
+                    </div>
+                </SideMenuListItem>
 
-            <SideMenuListItem>
-                <div>
-                    <ListAltIcon sx={{fontSize: 32}}/>
-                    <Typography sx={typographyStyle} variant='h6'>Список</Typography>
-                </div>
-            </SideMenuListItem>
+                <SideMenuListItem>
+                    <div>
+                        <ListAltIcon sx={{ fontSize: 32 }} />
+                        <Typography sx={typographyStyle} variant='h6'>Список</Typography>
+                    </div>
+                </SideMenuListItem>
 
-            <SideMenuListItem>
-                <div>
-                    <PersonIcon sx={{fontSize: 32}}/>
-                    <Typography sx={typographyStyle} variant='h6'>Профиль</Typography>
-                </div>
-            </SideMenuListItem>
+                <SideMenuListItem>
+                    <div>
+                        <PersonIcon sx={{ fontSize: 32 }} />
+                        <Typography sx={typographyStyle} variant='h6'>Профиль</Typography>
+                    </div>
+                </SideMenuListItem>
 
-            <SideMenuListItem>
-                <SideMenuTweetButton onClick={handleClickOpenAddTweet} 
-                sx={{ display: { xs: 'none', sm: 'none', md: 'inline-flex' } }}
-                fullWidth 
-                variant='contained'>
-                    Твитнуть
-                </SideMenuTweetButton>
+                <SideMenuListItem>
+                    <SideMenuTweetButton onClick={handleClickOpenAddTweet}
+                        sx={{ display: { xs: 'none', sm: 'none', md: 'inline-flex' } }}
+                        fullWidth
+                        variant='contained'>
+                        Твитнуть
+                    </SideMenuTweetButton>
 
-                <SideMenuTweetButton onClick={handleClickOpenAddTweet}
-                sx={{ display: { xs: 'inline-flex', sm: 'inline-flex', md: 'none' } }}
-                variant='contained'>
-                    <CreateIcon/>
-                </SideMenuTweetButton>
-                <ModalBlock visible={visibleAddTweet} onClose={handleClickCloseAddTweet}>
-                    <AddTweetForm maxRows={15}/>
-                </ModalBlock>
-            </SideMenuListItem>
-        </SideMenuList>
+                    <SideMenuTweetButton onClick={handleClickOpenAddTweet}
+                        sx={{ display: { xs: 'inline-flex', sm: 'inline-flex', md: 'none' } }}
+                        variant='contained'>
+                        <CreateIcon />
+                    </SideMenuTweetButton>
+                    <ModalBlock visible={visibleAddTweet} onClose={handleClickCloseAddTweet}>
+                        <AddTweetForm maxRows={15} />
+                    </ModalBlock>
+                </SideMenuListItem>
+            </SideMenuList>
+
+            <UserSideProfile />
+        </>
     )
 }
 

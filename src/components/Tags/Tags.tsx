@@ -23,8 +23,8 @@ export const Tags: FC = (): React.ReactElement | null => {
 
     if (tags) {
         return (
-            <RightSideBlock>
-            <RightSideBlockHeader variant="outlined">
+            <RightSideBlock elevation={0}>
+            <RightSideBlockHeader variant="outlined" elevation={0}>
                 <b>Актуальные темы</b>
             </RightSideBlockHeader>
 

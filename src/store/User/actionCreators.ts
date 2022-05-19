@@ -1,7 +1,10 @@
 import { LoginFormProps } from "../../pages/SignIn/components/LoginModal";
-import { Status, User, UserActionsTypes } from "./types";
+import { RegisterFormProps } from "../../pages/SignIn/components/RegisterModal";
+import { FetchUserSignInAction, FetchUserSignUpAction, Status, User, UserActionsTypes } from "./types";
 
-export const fetchUser = (payload : LoginFormProps) => ({type: UserActionsTypes.FETCH_USER, payload})
+export const fetchUserSignIn = (payload : LoginFormProps): FetchUserSignInAction => ({type: UserActionsTypes.FETCH_USER_SIGN_IN, payload})
+
+export const fetchUserSignUp = (payload : RegisterFormProps): FetchUserSignUpAction => ({type: UserActionsTypes.FETCH_USER_SIGN_UP, payload})
 
 export const fetchUserSuccess = (payload: User) => ({type: UserActionsTypes.FETCH_USER_SUCCESS, payload})
 

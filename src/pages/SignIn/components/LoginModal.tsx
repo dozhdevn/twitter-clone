@@ -7,7 +7,7 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from "yup";
 import { Notification } from '../../../components/Notification';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchUser } from '../../../store/User/actionCreators';
+import { fetchUserSignIn } from '../../../store/User/actionCreators';
 import { selectUser } from '../../../store/User/selectors';
 
 interface LoginModalProps {
@@ -30,6 +30,9 @@ export const LoginModal: React.FC<LoginModalProps> = ({ open, onClose }): React.
     const dispatch = useDispatch()
     const { status } = useSelector(selectUser)
 
+    console.log(status)
+
+
     const [openNotification, setOpenNotification] = React.useState<"success" | "error">()
 
     const handleCloseNotification = () => {
@@ -41,7 +44,7 @@ export const LoginModal: React.FC<LoginModalProps> = ({ open, onClose }): React.
     });
 
     const onSubmit = async (data: LoginFormProps) => {
-        dispatch(fetchUser(data))
+        dispatch(fetchUserSignIn(data))
         reset({
             email: '',
             password: ''
@@ -107,6 +110,7 @@ export const LoginModal: React.FC<LoginModalProps> = ({ open, onClose }): React.
                                     />)}
                             />
                             <Button
+                                disabled = {status === 'LOADING'}
                                 type='submit'
                                 variant='contained'
                                 color='primary'
@@ -117,6 +121,7 @@ export const LoginModal: React.FC<LoginModalProps> = ({ open, onClose }): React.
                     </FormControl>
                 </form>
             </ModalBlock>
+
             {
                 status === 'SUCCESS' ?
                     <Notification
@@ -133,6 +138,7 @@ export const LoginModal: React.FC<LoginModalProps> = ({ open, onClose }): React.
                         severity='error'
                         description='Неверный логин и пароль' /> : null
             }
+
         </>
     )
 }

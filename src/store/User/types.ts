@@ -1,4 +1,5 @@
 import { LoginFormProps } from "../../pages/SignIn/components/LoginModal";
+import { RegisterFormProps } from "../../pages/SignIn/components/RegisterModal";
 
 export interface User {
     _id?: string;
@@ -10,7 +11,7 @@ export interface User {
     confirmed?: boolean;
     location?: string;
     about?: string;
-    website?: string;  
+    website?: string;
 }
 
 export enum Status {
@@ -26,15 +27,21 @@ export interface UserState {
 }
 
 export enum UserActionsTypes {
-    FETCH_USER = "FETCH_USER",
+    FETCH_USER_SIGN_IN = "FETCH_USER_SIGN_IN",
+    FETCH_USER_SIGN_UP = "FETCH_USER_SIGN_UP",
     SET_USER = "SET_USER",
     FETCH_USER_SUCCESS = "FETCH_USER_SUCCESS",
     FETCH_USER_ERROR = "FETCH_USER_ERROR"
 }
 
-export interface FetchUserAction {
-    type: UserActionsTypes.FETCH_USER
+export interface FetchUserSignInAction {
+    type: UserActionsTypes.FETCH_USER_SIGN_IN
     payload: LoginFormProps
+}
+
+export interface FetchUserSignUpAction {
+    type: UserActionsTypes.FETCH_USER_SIGN_UP
+    payload: RegisterFormProps
 }
 
 export interface SetUserAction {
@@ -52,4 +59,9 @@ interface FetchUserErrorAction {
     payload: Status.ERROR
 }
 
-export type UserActions = FetchUserAction | FetchUserSuccessAction | FetchUserErrorAction | SetUserAction
+export type UserActions =
+    FetchUserSignInAction |
+    FetchUserSignUpAction |
+    FetchUserSuccessAction |
+    FetchUserErrorAction |
+    SetUserAction

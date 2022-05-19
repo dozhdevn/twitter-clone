@@ -6,8 +6,13 @@ const initialState: UserState = {
 }
 
 export const userReducer = (state = initialState, action: UserActions): UserState => {
-    switch(action.type) {
-        case UserActionsTypes.FETCH_USER:
+    switch (action.type) {
+        case UserActionsTypes.FETCH_USER_SIGN_IN:
+            return {
+                ...state,
+                status: Status.LOADING
+            }
+        case UserActionsTypes.FETCH_USER_SIGN_UP:
             return {
                 ...state,
                 status: Status.LOADING
@@ -24,7 +29,7 @@ export const userReducer = (state = initialState, action: UserActions): UserStat
                 data: undefined,
                 status: Status.ERROR
             }
-        default: 
-        return state
+        default:
+            return state
     }
 }

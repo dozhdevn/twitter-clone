@@ -1,12 +1,12 @@
 import classes from './signIn.module.scss'
-import { Typography, Button, styled, FormControl, FormGroup, TextField  } from '@mui/material';
+import { Typography, Button, styled } from '@mui/material';
 import TwitterIcon from '@mui/icons-material/Twitter';
 import SearchIcon from '@mui/icons-material/Search';
 import PeopleIcon from '@mui/icons-material/PeopleOutline';
 import ChatIcon from '@mui/icons-material/ChatBubbleOutlineOutlined';
-import ModalBlock from '../../components/ModalBlock';
 import { FC, useState } from 'react';
 import { LoginModal } from './components/LoginModal';
+import { RegisterModal } from './components/RegisterModal';
 
 const LoginSideTitle = styled(Typography)({
     fontSize: '32px',
@@ -77,48 +77,7 @@ export const SignIn: FC = () => {
     
             <LoginModal open={visibleModal === 'signIn'} onClose={handleCloseModal}/>
 
-            <ModalBlock
-                visible={visibleModal === 'signUp'}
-                onClose={handleCloseModal} 
-                title = 'Создайте учетную запись'>
-                <FormControl
-                    component='fieldset'
-                    sx={{marginBottom: '16px'}}
-                    fullWidth>
-                    <FormGroup>
-                        <TextField
-                            sx={{mb: '18px'}}
-                            label='Имя'
-                            type='name'
-                            autoFocus
-                            variant='filled'
-                            fullWidth
-                            InputLabelProps={{shrink: true}}/>
-                        <TextField
-                            sx={{mb: '18px'}}
-                            label='E-mail'
-                            type='email'
-                            autoFocus
-                            variant='filled'
-                            fullWidth
-                            InputLabelProps={{shrink: true}}/>
-                        <TextField
-                            sx={{mb: '18px'}}
-                            label='Пароль'
-                            type='password'
-                            autoFocus
-                            variant='filled'
-                            fullWidth
-                            InputLabelProps={{shrink: true}}/>
-                        <Button
-                            variant='contained'
-                            color='primary'
-                            fullWidth>
-                                Войти
-                        </Button>
-                    </FormGroup>
-                </FormControl>
-            </ModalBlock>
+            <RegisterModal open={visibleModal === 'signUp'} onClose={handleCloseModal}/>
         </div>
     )
 }

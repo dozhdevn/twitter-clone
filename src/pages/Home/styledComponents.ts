@@ -7,8 +7,7 @@ export const RightSide = styled('div')({
 })
 export const TweetsWrapper = styled(Paper)({
     borderRadius: 0,
-    borderTop: '0',
-    borderBottom: '0'
+    height: '100vh'
 })
 
 export const TweetsHeader = styled(Paper)({

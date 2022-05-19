@@ -54,7 +54,7 @@ export const Tweet: FC<TweetProps> = ({ text, user, _id, createdAt }): React.Rea
         maxWidth: 450
     })
 
-    const TweetHeader = styled(Typography)({
+    const TweetHeader = styled('div')({
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'space-between',

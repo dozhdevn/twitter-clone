@@ -1,5 +1,5 @@
 import { CircularProgress, Container, Grid, InputAdornment, Paper, Typography } from '@mui/material'
-import { FC, useEffect} from 'react'
+import { FC, useEffect } from 'react'
 import { SearchTextField } from '../../components/SearchTextField';
 import { SideMenu } from '../../components/SideMenu'
 import { Tweet } from '../../components/Tweet';
@@ -21,7 +21,7 @@ import { BackButton } from '../../components/BackButton';
 const Home: FC = (): React.ReactElement => {
 
     const { tweets, loading } = useSelector(selectTweets)
-    
+
     const dispatch = useDispatch()
 
     useEffect(() => {
@@ -35,39 +35,39 @@ const Home: FC = (): React.ReactElement => {
                 <Grid item sm={2} md={3}>
                     <SideMenu />
                 </Grid>
-                    <Grid item sm={7} md={6}>
-                        <TweetsWrapper variant="outlined" >
-                            <TweetsHeader variant="outlined">
-                                <Route path='/home/:any' component={BackButton}/>
-                                <Route path='/home' exact><Typography variant="h6">Твиты</Typography></Route>
-                                <Route path='/home/tweet'><Typography variant="h6">Твитнуть</Typography></Route>
-                            </TweetsHeader>
+                <Grid item sm={7} md={6}>
+                    <TweetsWrapper variant="outlined" >
+                        <TweetsHeader variant="outlined">
+                            <Route path='/home/:any' component={BackButton} />
+                            <Route path='/home' exact><Typography variant="h6">Твиты</Typography></Route>
+                            <Route path='/home/tweet'><Typography variant="h6">Твитнуть</Typography></Route>
+                        </TweetsHeader>
 
-                            <Route path={['/home', '/home/search']} exact>
-                                <Paper sx={{ padding: '20px', borderBottom: '12px solid #E6ECF0' }}>
-                                    <AddTweetForm />
-                                </Paper>
-                            </Route>
+                        <Route path={['/home', '/home/search']} exact>
+                            <Paper sx={{ padding: '20px', borderBottom: '12px solid #E6ECF0' }}>
+                                <AddTweetForm />
+                            </Paper>
+                        </Route>
 
-                            <Route path="/home" exact>
-                                {
-                                    loading ? 
+                        <Route path="/home" exact>
+                            {
+                                loading ?
                                     <div style={{ textAlign: "center", marginTop: '70px' }}>
                                         <CircularProgress />
-                                    </div> :
+                                    </div> : 
                                     tweets.map(tweet =>
                                         <Tweet
                                             key={tweet._id}
                                             {...tweet}
                                         />
                                     )
-                                }
-                            </Route>
+                            }
+                        </Route>
 
-                            <Route path='/home/tweet/:id' component={FullTweet} exact />
+                        <Route path='/home/tweet/:id' component={FullTweet} exact />
 
-                        </TweetsWrapper>
-                    </Grid>
+                    </TweetsWrapper>
+                </Grid>
                 <Grid item sm={3} md={3}>
                     <RightSide>
                         <SearchTextField
